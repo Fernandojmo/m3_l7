@@ -2,11 +2,19 @@ pipeline {
     agent any
 
     stages {
+<<<<<<< HEAD
         // stage('Clonar Repositorio') {
         //     steps {
         //         git 'https://github.com/clabca/java-maven-app.git'
         //     }
         // }
+=======
+        stage('Clonar Repositorio') {
+            steps {
+                git 'https://github.com/Fernandojmo/m3_l7.git'
+            }
+        }
+>>>>>>> 0c07681e2af0f194f70043e5bf6f4155bbbdf76e
 
         stage('Construir') {
             steps {
