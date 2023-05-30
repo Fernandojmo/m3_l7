@@ -25,6 +25,21 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('SonarQube analysis') {
+             environment {
+                SCANNER_HOME = tool 'SonarQube Conexion'
+            }
+            steps {
+              withSonarQubeEnv(credentialsId: 'SecretTextContent', installationName: 'SonarQube') {
+                sh '''$SCANNER_HOME/bin/sonar-scanner \
+                    -Dsonar.projectKey=projectKey \
+                    -Dsonar.projectName=projectName \
+                    -Dsonar.sources=src/ \
+                    -Dsonar.exclusions=src/test/java/***/*.java \
+                    -Dsonar.projectVersion=${BUILD_NUMBER}-${GIT_COMMIT_SHORT}'''
+             }
+            }
+        }
 
         stage('Desplegar') {
             when {
