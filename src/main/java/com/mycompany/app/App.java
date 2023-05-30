@@ -16,4 +16,10 @@ public class App {
     public String getMessage() {
         return MESSAGE;
     }
+
+    public String getAnotherMessage() {
+        int VariableErronea = 0;
+        return VariableErronea;
+    }
 }
+
