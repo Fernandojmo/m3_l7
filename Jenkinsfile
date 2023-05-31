@@ -53,9 +53,7 @@ pipeline {
             }
         }        
         stage('Enviar Nexus') {
-            steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/my-app-1.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'UserNexus', groupId: 'M3L6clc', nexusUrl: 'nexus.sisge.cl/repository/M3L6Ejercicio/', nexusVersion: 'nexus2', protocol: 'http', repository: 'M3L6Ejercicio', version: '1.0.${BUILD_NUMBER}'
-            }
+            nexusArtifactUploader credentialsId: 'AdminNexus', groupId: 'MyWebApp', nexusUrl: 'localhost:8081/repository/Ropositorio-prueba-m3-l5/', nexusVersion: 'nexus2', protocol: 'http', repository: 'Ropositorio-prueba-m3-l5', version: '1.0'
             post {
                 always {
                     slackSend channel: '#notificajenkins', color: 'purple', message: 'Mensaje MOD3 LEC7 Slack'
