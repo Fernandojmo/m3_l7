@@ -56,7 +56,8 @@ pipeline {
             nexusArtifactUploader credentialsId: 'AdminNexus', groupId: 'MyWebApp', nexusUrl: 'localhost:8081/repository/Ropositorio-prueba-m3-l5/', nexusVersion: 'nexus2', protocol: 'http', repository: 'Ropositorio-prueba-m3-l5', version: '1.0'
             post {
                 always {
-                    slackSend channel: '#notificajenkins', color: 'purple', message: 'Mensaje MOD3 LEC7 Slack'
+                    // slackSend channel: '#notificajenkins', color: 'purple', message: 'Mensaje MOD3 LEC7 Slack'
+                    echo 'send slack message'
                 }
             }
         }
