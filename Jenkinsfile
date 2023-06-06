@@ -46,20 +46,18 @@ pipeline {
             steps {
                 // nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/my-app-1.0-SNAPSHOT.jar', type: 'jar']], credentialsId: 'UserNexus', groupId: 'M3L6clc', nexusUrl: 'nexus.sisge.cl/repository/M3L6Ejercicio/', nexusVersion: 'nexus2', protocol: 'http', repository: 'M3L6Ejercicio', version: '1.0.${BUILD_NUMBER}'
                 nexusArtifactUploader artifacts: [[artifactId: 'App', classifier: '', file: 'src/main/java/com/mycompany/app/App.java', type: 'java']], credentialsId: 'AdminNexus', groupId: 'MyWebApp', nexusUrl: 'localhost:8081/repository/Ropositorio-prueba-m3-l5/', nexusVersion: 'nexus2', protocol: 'http', repository: 'Ropositorio-prueba-m3-l5', version: '1.0.${BUILD_NUMBER}'
-                slackSend channel: '#grupo-2', message: 'Test Generated, version: 1.0.${BUILD_NUMBER}'
-                echo 'send slack message' 
             }
-            // steps {
-
-            //     } 
             // post {
             //     always {
             //         // slackSend channel: '#grupo-2', color: 'purple', message: 'Test Generated, version: '1.0.${BUILD_NUMBER}''
             //         echo 'send slack message'                }
             // }
         }
-        // stage('Slack Message') {
-
-        // }
+        stage('Slack Message') {
+            steps {
+                slackSend channel: '#grupo-2', message: 'Test Generated, Check the Nexus Repository for the artifact'
+                echo 'send slack message' 
+                }
+        }
     }
 }
