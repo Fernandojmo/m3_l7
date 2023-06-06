@@ -55,9 +55,9 @@ pipeline {
         }
         stage('Slack Message') {
             steps {
-                slackSend channel: '#grupo-2', color: 'purple', message: 'Test Generated, version: '1.0.${BUILD_NUMBER}''
+                slackSend channel: '#grupo-2', message: 'Test Generated, version: 1.0.${BUILD_NUMBER}'
                 echo 'send slack message' 
-                }
+                } 
         }
     }
 }
