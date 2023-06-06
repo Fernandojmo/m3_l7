@@ -1,25 +1,16 @@
 pipeline {
     agent any
-
     stages {
-        // stage('Clonar Repositorio') {
-        //     steps {
-        //         git 'https://github.com/clabca/java-maven-app.git'
-        //     }
-        // }
-
         stage('Construir') {
             steps {
                 sh 'mvn clean install'
             }
         }
-
         stage('Pruebas') {
             steps {
                 sh 'mvn test'
             }
         }
-
         stage('Empaquetar') {
             steps {
                 sh 'mvn package'
@@ -40,7 +31,6 @@ pipeline {
              }
             }
         }
-
         stage('Desplegar') {
             when {
                 expression {
@@ -59,7 +49,7 @@ pipeline {
             }
             post {
                 always {
-                    // slackSend channel: '#notificajenkins', color: 'purple', message: 'Mensaje MOD3 LEC7 Slack'
+                    slackSend channel: '#grupo-2', color: 'purple', message: 'Test Generated, version: '1.0.${BUILD_NUMBER}''
                     echo 'send slack message'                }
             }
         }
